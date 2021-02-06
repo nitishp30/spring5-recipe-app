@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Recipe app</title>
+</head>
+<body>
+
+	<h1>Recipes</h1>
+	<table>	
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Description</th>
+				<th>PrepTime</th>
+				<th>CookTime</th>
+				<th>Servings</th>
+				<th>Sources</th>
+				<th>Url</th>
+				<th>Directions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="recipe : ${recipes}">
+				<td th:text="${recipe.id}"></td>
+				<td th:text="${recipe.description}"></td>
+				<td th:text="${recipe.prepTime}"></td>
+				<td th:text="${recipe.cookTime}"></td>
+				<td th:text="${recipe.servings}"></td>
+				<td th:text="${recipe.sources}"></td>
+				<td th:text="${recipe.url}"></td>
+				<td th:text="${recipe.directions}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

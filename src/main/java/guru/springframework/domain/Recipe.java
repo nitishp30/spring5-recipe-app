@@ -1,5 +1,6 @@
 package guru.springframework.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,15 +25,17 @@ public class Recipe {
 	private Long id;
 
 	private String description;
-	private Integer propTime;
+	private Integer prepTime;
 	private Integer cookTime;
 	private Integer servings;
 	private String sources;
 	private String url;
+
+	@Lob
 	private String directions;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-	private Set<Ingredient> ingredients;
+	private Set<Ingredient> ingredients = new HashSet<>();
 
 	@Lob
 	private Byte[] images;
@@ -47,7 +50,7 @@ public class Recipe {
 	@JoinTable(name = "recipe_category", //
 			joinColumns = @JoinColumn(name = "recipe_id"), //
 			inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private Set<Category> categories;
+	private Set<Category> categories  = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -65,12 +68,12 @@ public class Recipe {
 		this.description = description;
 	}
 
-	public Integer getPropTime() {
-		return propTime;
+	public Integer getPrepTime() {
+		return prepTime;
 	}
 
-	public void setPropTime(Integer propTime) {
-		this.propTime = propTime;
+	public void setPrepTime(Integer prepTime) {
+		this.prepTime = prepTime;
 	}
 
 	public Integer getCookTime() {
@@ -127,6 +130,13 @@ public class Recipe {
 
 	public void setNotes(Notes notes) {
 		this.notes = notes;
+		this.notes.setRecipe(this);
+	}
+
+	public Recipe addIngrediant(Ingredient ingredient) {
+		ingredient.setRecipe(this);
+		this.ingredients.add(ingredient);
+		return this;
 	}
 
 	public Difficulty getDifficulty() {
