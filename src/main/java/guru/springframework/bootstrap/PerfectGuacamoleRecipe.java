@@ -14,7 +14,9 @@ import guru.springframework.domain.UnitOfMeasure;
 import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class PerfectGuacamoleRecipe {
 
 	private RecipeRepository recipeRepo;
@@ -30,6 +32,7 @@ public class PerfectGuacamoleRecipe {
 	}
 
 	public Recipe getRecipe() {
+		log.debug("Getting recipe for perfect guacamole");
 		Optional<Recipe> out = recipeRepo.findByDescription(DESCRIPTION);
 		if (out.isPresent()) {
 			return out.get();
