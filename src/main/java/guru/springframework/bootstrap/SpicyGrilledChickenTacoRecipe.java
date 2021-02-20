@@ -45,7 +45,7 @@ public class SpicyGrilledChickenTacoRecipe {
 			recipe.setDifficulty(Difficulty.MODERATE);
 			recipe.setDirections(getDirections());
 			recipe.setCategories(getCategories());
-			for (Ingredient ingr : addIngredients()) {
+			for (Ingredient ingr : getIngredients()) {
 				recipe.addIngrediant(ingr);
 			}
 			recipe.setNotes(getNotes());
@@ -74,7 +74,7 @@ public class SpicyGrilledChickenTacoRecipe {
 		return catg;
 	}
 
-	private Set<Ingredient> addIngredients() {
+	private Set<Ingredient> getIngredients() {
 		Set<Ingredient> list = new HashSet<>();
 		list.add(newInstance(new BigDecimal(2), //
 				uomRepo.findByDescription("Tablespoon").get(), //
@@ -92,7 +92,7 @@ public class SpicyGrilledChickenTacoRecipe {
 				uomRepo.findByDescription("Teaspoon").get(), //
 				"1/2 teaspoon salt"));
 		list.add(newInstance(new BigDecimal(0), //
-				null, //
+				uomRepo.findByDescription("Dash").get(), //
 				"1 clove garlic, finely chopped"));
 		list.add(newInstance(new BigDecimal(1), //
 				uomRepo.findByDescription("Tablespoon").get(), //
@@ -104,7 +104,7 @@ public class SpicyGrilledChickenTacoRecipe {
 				uomRepo.findByDescription("Tablespoon").get(), //
 				"2 tablespoons olive oil"));
 		list.add(newInstance(new BigDecimal(0), //
-				null, //
+				uomRepo.findByDescription("Dash").get(), //
 				"4 to 6 skinless, boneless chicken thighs (1 1/4 pounds)"));
 		return list;
 	}

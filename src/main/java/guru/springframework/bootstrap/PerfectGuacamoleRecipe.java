@@ -45,7 +45,7 @@ public class PerfectGuacamoleRecipe {
 			recipe.setDifficulty(Difficulty.EASY);
 			recipe.setDirections(getDescription());
 			recipe.setCategories(getCategories());
-			for(Ingredient ingr: getIngredients()) {
+			for (Ingredient ingr : getIngredients()) {
 				recipe.addIngrediant(ingr);
 			}
 			recipe.setNotes(getNotes());
@@ -78,7 +78,8 @@ public class PerfectGuacamoleRecipe {
 	private Set<Ingredient> getIngredients() {
 		Set<Ingredient> list = new HashSet<>();
 		list.add(newInstance(new BigDecimal(2), //
-				null, "2 ripe avocados, peeled and seeded"));
+				uomRepo.findByDescription("Dash").get(),
+				"2 ripe avocados, peeled and seeded"));
 		list.add(newInstance(new BigDecimal(0.5), //
 				uomRepo.findByDescription("Teaspoon").get(), //
 				"1/2 teaspoon salt"));
